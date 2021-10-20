@@ -20,7 +20,7 @@ Kjør installasjon av python pakker
 pip install -r requirements.txt
 ```
 
-##Bruk
+## Bruk
 
 Du kan velge å kjøre hver fil for seg, eller bruke menyen ved å kjøre fila 
 ```bash
@@ -35,7 +35,7 @@ python main.py
 
 Så skriver du inn filnavnet på den fila du vil kjøre, uten ".py".
 
-###Eksempel
+### Eksempel
 For å kjøre fil 2a1.py (Oppgave 2a, første plot), skriv
 ```bash
 2a1
