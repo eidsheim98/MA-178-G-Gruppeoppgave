@@ -65,4 +65,4 @@ if __name__ == '__main__':
         print("The error difference: 1e-{}".format(num_of_zeros(difference)))
 
         #input("Press enter to run next iteration")
-        time.sleep(1)
+        #time.sleep(1)
