@@ -1,68 +1,27 @@
-import sympy as sym
-from fractions import Fraction
-import time
+import numpy as np
 
-"""
-Linja l(x) = ax+b
+f = lambda x: 3*x**2+4*x-4
+f_prime = lambda x: 6*x+4
 
-Vist algoritme x_1 = x_0 - f(x) / f'(x)
-"""
-
-def f(x):
+def my_newton(f, df, x0, tol):
     """
-    Gir svar på funksjon ut ifra x
-    :param x: Verdien til variabel x i stykket
-    :return: Svaret på funksjonen
+    Regner ut et estimat ved bruk av Newton-Raphsons metode
+    :param f: Funksjonen f
+    :param df: Funksjonen f derivert
+    :param x0: Startpunkt for x
+    :param tol: Toleanse for når programmet skal skal si seg fornøyd
+    :return:
     """
-    return 3*x**2+4*x-4
-
-def f_derivert(x):
-    """
-    Gir svar på funksjon derivert ut ifra x
-    :param x: Verdien til variabel x i stykket
-    :return: Svaret på funksjon derivert
-    """
-
-    x = sym.Symbol('x')
-    f_der = sym.diff(3*x**2+4*x-4)
-    answer = f_der.subs(x,3)
-    return answer
-
-def num_of_zeros(n):
-  s = '{:.16f}'.format(n).split('.')[1]
-  return len(s) - len(s.lstrip('0'))
-
-x0 = 1 #Setting startnumber
-it_number = 0
-last_newton_answer = 1
+    if abs(f(x0)) < tol:
+        return x0
+    else:
+        return my_newton(f, df, x0 - f(x0)/df(x0), tol)
 
 if __name__ == '__main__':
-    while True:
-        print("\nIteration {}".format(it_number))
-
-        y = f(x0)
-        y_der = f_derivert(x0)
-
-        x1 = x0-(y/y_der)
-        decimal = float(Fraction(x1))
-
-        #print("f(x): {}".format(y))
-        #print("f'(x): {}".format(y_der))
-        print("Newton gir x: {:.10f}".format(decimal))
-
-        x0 = x1
-        it_number +=1
-        error_treshold = 1e-12
-        difference = (last_newton_answer / decimal) - 1
-
-        if error_treshold > difference:
-            print("Found point")
-            quit()
-
-        last_newton_answer = decimal
-
-        print("Error threshold {}".format(error_treshold))
-        print("The error difference: 1e-{}".format(num_of_zeros(difference)))
-
-        #input("Press enter to run next iteration")
-        #time.sleep(1)
+    startnumbers = [-3, -2, -1, 0, 1, 2, 3]
+    last_estimate = 0
+    for startnumber in startnumbers:
+        estimate = my_newton(f, f_prime, startnumber, 1e-12)
+        if estimate != last_estimate:
+            print("Estimat med tall {}: {}".format(startnumber, last_estimate))
+            last_estimate = estimate
