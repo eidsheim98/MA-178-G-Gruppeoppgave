@@ -2,19 +2,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# setting the x - coordinates
-x = np.arange(0, 2 * (np.pi), 0.01)
-# setting the corresponding y - coordinates
+# Setter x-koordinater
+# Tallet 0.2/100 gjør at det blir 1000 punkter, som kravet i oppgaven
+x = np.arange(0, 10, 0.00628)
+# Setter y-koordinater
 y = np.sqrt(1+x**2)
 
+# Setter tittelen på vinduet
 plt.title(r'$f(x) = \sqrt{1+x^2}$')
 
+# Setter tittelen på x og y akse
 plt.xlabel("x")
 plt.ylabel("y")
 
-# poltting the points
-plt.plot(x, y)
-plt.grid()
+# Plotter punkter
+# 0.1 er størrelse
+# c = red er farge
+plt.scatter(x, y, 0.5, c="red")
 
-# function to show the plot
+# Vis plot
 plt.show()

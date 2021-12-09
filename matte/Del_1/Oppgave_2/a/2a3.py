@@ -2,19 +2,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# setting the x - coordinates
-x = np.arange(-2, 2, 0.01)
+# Setter x-koordinater
+# Tallet 0.004 gjør at det blir 1000 punkter, som kravet i oppgaven
+x = np.arange(-2, 2, 0.004)
 # setting the corresponding y - coordinates
 y = (1-x)/(x+3)**2
 
-plt.title(r'$f(x) = (1-x)/(x+3)^2$')
+# Setter tittelen på vinduet
+plt.title(r'$f(x) = \frac{(1-x)}{(x+3)^2}$')
 
+# Setter tittelen på x og y akse
 plt.xlabel("x")
 plt.ylabel("y")
 
-# poltting the points
-plt.plot(x, y)
-plt.grid()
+# Plotter punkter
+# 0.1 er størrelse
+# c = red er farge
+plt.scatter(x, y, 0.5, c="red")
 
-# function to show the plot
+# Vis plot
 plt.show()

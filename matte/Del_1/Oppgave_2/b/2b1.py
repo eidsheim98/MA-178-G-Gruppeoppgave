@@ -4,28 +4,31 @@ import matplotlib.pyplot as plt
 from scipy.misc import derivative
 import numpy as np
 
-# setting the x - coordinates
-y = np.linspace(-6, 6)
-# setting the corresponding y - coordinates
 def function(x):
     return 7*x**2-8*x+1
 
-# calculating its derivative
+# Kalkuler den deriverte
 def deriv(x):
     return derivative(function, x)
 
-plt.title(r'$f(x) = 7x^2-8x+1$')
+# Setter x-koordinater
+# Tallet 0.2/100 gjør at det blir 1000 punkter, som kravet i oppgaven
+x = np.arange(0, 2, 0.2/100)
+print(x.size)
+# Setter y-koordinater
+y = deriv(x)
 
+# Setter tittelen på vinduet
+plt.title(r'$f^\prime(x) = 14x-8$')
+
+# Setter tittelen på x og y akse
 plt.xlabel("x")
 plt.ylabel("y")
 
-# plotting the function
-#plt.plot(y, function(y), color='purple', label='Function')
+plt.grid()
 
 # plotting its derivative
-plt.plot(y, deriv(y), color='green', label='Derivative')
-
-plt.grid()
+plt.scatter(x, y, 0.7, c="red")
 
 # function to show the plot
 plt.show()

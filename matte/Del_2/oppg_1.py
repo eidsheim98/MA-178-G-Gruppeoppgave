@@ -1,9 +1,24 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 f = lambda x: 3*x**2+4*x-4
-f_prime = lambda x: 6*x+4
+df = lambda x: 6 * x + 4
 
-def my_newton(f, df, x0, tol):
+def plot():
+    # Setter x-koordinater
+    # Tallet 0.2/100 gjør at det blir 1000 punkter, som kravet i oppgaven
+    x = np.arange(-5, 5, 0.2/20)
+    # Setter y-koordinater
+    y = [newton_raphson(f, df, num, 1e-12) for num in x]
+
+    plt.xlabel("x")
+    plt.ylabel("y")
+    plt.grid()
+    plt.scatter(x,y,0.5,c='red')
+    plt.show()
+    return x, y
+
+def newton_raphson(f, df, x0, tol):
     """
     Regner ut et estimat ved bruk av Newton-Raphsons metode
     :param f: Funksjonen f
@@ -15,13 +30,11 @@ def my_newton(f, df, x0, tol):
     if abs(f(x0)) < tol:
         return x0
     else:
-        return my_newton(f, df, x0 - f(x0)/df(x0), tol)
+        return newton_raphson(f, df, x0 - f(x0) / df(x0), tol)
 
 if __name__ == '__main__':
-    startnumbers = [-3, -2, -1, 0, 1, 2, 3]
-    last_estimate = 0
+    startnumbers = [-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]
     for startnumber in startnumbers:
-        estimate = my_newton(f, f_prime, startnumber, 1e-12)
-        if estimate != last_estimate:
-            print("Estimat med tall {}: {}".format(startnumber, last_estimate))
-            last_estimate = estimate
+        estimate = newton_raphson(f, df, startnumber, 1e-12)
+        print("Estimat med tall {}: {}".format(startnumber, estimate))
+    plot()

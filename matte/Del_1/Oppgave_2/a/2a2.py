@@ -2,19 +2,23 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# setting the x - coordinates
-x = np.arange(0, 2 * (np.pi), 0.01)
+# Setter x-koordinater
+# Tallet 0.65*100 gjør at det blir 1000 punkter, som kravet i oppgaven
+x = np.arange(0, 2 * (np.pi), 0.65/100)
 # setting the corresponding y - coordinates
 y = np.sin(x)
 
+# Setter tittelen på vinduet
 plt.title(r'$f(x) = sin(x)$')
 
+# Setter tittelen på x og y akse
 plt.xlabel("x")
 plt.ylabel("y")
 
-# poltting the points
-plt.plot(x, y)
-plt.grid()
+# Plotter punkter
+# 0.1 er størrelse
+# c = red er farge
+plt.scatter(x, y, 0.1, c="red")
 
-# function to show the plot
+# Vis plot
 plt.show()
